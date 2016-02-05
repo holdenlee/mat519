@@ -1,0 +1,393 @@
+\chapter{Overview}
+
+We'll talk about statistics for the number of rational points on curves, usually algebraic curves over $\Q$. (Later on we may change to another global field.)
+
+The main question is the following: 
+\begin{itemize}
+\item
+Given a ``family" of algebraic curves over $\Q$ (ordered in some way), what ``proportion" of those curves have a rational point? How many rational points do we expect on those curves?
+\end{itemize}
+
+The families will usually be given in terms of explicit equations with varying coefficients in $\Z$, %we can scale them so they're integers. %embed into projective space with certain coefficients.
+giving these curves in projective space $\Pj^n$. 
+
+We'll order these curves by the maximum of absolute values of coefficients in $\Z$, called the \ivocab{height} of the equation(s)/curve. (If it's a weighted projective space, then we have to take those weights into account.) We'll abuse langauge and refer to the equations as the curve (they're actually a model of the curve).
+%with respect to that ordering what is the distribution of the number of rational points?
+
+\begin{itemize}
+\item
+When the curves in a family are ordered by height, what is the distribution of the number of rational points?
+\end{itemize}
+
+There are three types of behavior for rational points on curve. 
+
+Trichotomy:
+
+\section{Genus 0}
+
+Genus 0: A genus 0 curve over $\Q$ has either no rational points or its rational points are in bijection with $\Pj^1(\Q)$.
+%what proportion have infinitely many/none?
+The key principle that makes it easier is that the \vocab{local-global principle} holds. A genus zero curve has rational iff it has $\Q_p$ poitns for all $p$ and $\R$-points. Checking for $\Q_p,\R$ points is much easier. We just have to understand which curves locally have points everywhere; those curves globally have points.
+
+\begin{ex}[Circles]
+Consider $C_n:x^2+y^2=nz^2$ in $\Pj^2$. $C_n$ has a rational point iff $n$ is a sum of 2 squares iff the factorization of $n$ has only even exponents for primes $\equiv 3\pmod 4$. 
+
+The natural density of such $n$ is 0. The average number of prime factors is infinite. The chance that none of the odd exponent primes are $\equiv 3\pmod 4$ goes to 0. 
+
+This is not a good way of producing rational points. 
+\end{ex}
+We're not asking the right question. How 0 is 0---i.e. how fast is it approaching 0? The more precise answer is
+\[
+|\set{n<X}{n\text{ is sum of 2 squares}}|\sim\fc{cX}{\sqrt{\ln X}}.
+\]
+This says how fast the density approaches 0.
+
+It's easy to get unsolved problems, for example, if we allow arbitrary coefficients in front of $x$.
+\begin{ex}[Diagonal conics]
+Consider diagonal conics $C_{a,b,c}: ax^2+by^2+cz^2=0$ in $\Pj^2$. The density of $C_{a,b,c}$ having a rational point is 0. Asymptotics are different depending on your family.
+\end{ex}
+
+\begin{proof}
+We handle genus 0 curves with the local-global principle. By Chinese remainder theorem we can multiply a finite number of primes. To prove the proportion is 0, it suffices to show that when we take more and more primes, the density goes to 0. We're not using any infinite version of the CRT.
+
+Take $p>2$. How can we tell if it has a point over $\F_p$? A smooth conic always has a rational point. If How do we tell if the conic is smooth? Look at the determinant, 
+%as $3\times 3$ matrix.
+it's smooth iff it's nonzero. The determinant is $abc$. If it's smooth it has a point over $\F_p$, by Hensel's lemma it lifts to a $\Z_p$ point. 
+
+The only way it has no points is if it's not smooth. If the conic is not smooth, it breaks up into 2 points. If the 2 lines are over $\F_p$, it still has smooth points, which lift to $\Q_p$ points. The only way it can not have points is if it is a product of two lines not defined over $\F_p$. There are no $\F_p$-points so no $\Q_p$-points. 
+
+\begin{itemize}
+\item
+The probability that the determinant is a multiple of $p$ ($p\mid abc$) is $1-(1-\rc p)^3\approx \fc3p+O(p^2)$. 
+\item
+Then the probability 
+that the singular conic breaks up into two $\F_p$-conjugate lines over $\F_p$, i.e., 
+the 2 lines are not defined over $\F_p$, is $\rc2$. For example, if $c$ is a multiple of $p$, we get $ax^2+by^2 = 0$. The probability this doesn't factor is $\approx \rc2$, the probability $\fc ba$ is not a square.
+\end{itemize}
+The density of $C_{a,b,c}$ having a point over $\Q_p$ is hence
+\[
+\approx 1- \ub{\fc 3p}{\Pj(p\mid abc)}\cdot \rc2 + O\prc{p^2}.
+\]
+The density of cubics hving a $\Q_p$-point for all $p<Y$ is
+\[
+\prod_{p<Y} \pa{1-\fc{3}{2p}+O\prc{p^2}}\to 0.
+\]
+As $Y\to \iy$ this goes to 0.
+\end{proof}
+(We did the calculations intuitively; it's worth going through this rigorously.)
+
+(Alternatively we can try to fix $a,b$ and let $c\to \iy$ for each $a,b$. This is what people have tried to do to understand the decay.)
+
+What is the rate of decay to 0?
+\[
+|\set{|a|,|b|,|c|<X}{C_{a,b,c}\text{ has a rational point}}\ll \fc{X^3}{(\ln X)^{\fc 32}}.
+\]
+The upper bound is due to Serre. He conjectured this should be a lower bound. This wasn't shown until later by Hooley (Representation of 0 by ternary quadratic forms). The analytic number theory gets technical, and he loses track of the constants quickly.
+%alternatively, fix a, b, and let $c\to \iy$.
+%What people have tried to do to understand the decay.
+Are the constants equal? Is it asymptotic with a fixed constant, or is it oscillating? This is unknown.
+
+These are simple analytic number theory problems that we don't know the answer to.
+
+The upper bound is straightforward with the right tool (large sieve). The lower bound is hard.
+
+The real question for genus 0 curves is general conics.
+\begin{ex}[General conic]
+Consider
+\[
+ax^2+bxy+cxz+dy^2 + eyz + fz^2.
+\]
+%let vary
+%pick one at random.
+The density of such curves with a rational points is 0.
+%for genus 0 is 0. The refined question is what is the rate of decay?
+\end{ex}
+\begin{proof}
+To get the rate of decay do the same proof. The probability that such a conic is singular over $\F_p$ is different. Take the determinant  of the matrix $\begin{pmatrix}
+\fc a2&b & c\\
+ b & \fc d2 & e\\
+c & e &\fc f2
+\end{pmatrix}$.
+The determinant is equidistributed; the probability it's 0 is $\rc p$. (This is different from the diagonal case.
+You can't just this by a diagonal conic.)
+Are they defined over $\F_p$? Again, it doesn't iff its singular and doesn't factor over $\F_p$, so the probability is $\rc2$. 
+
+The probability that such a conic over $\Z$ has a $\Q_p$ point for all $p<Y$ is approximately 
+\[\prod_{p<Y} (1-\rc{2p})\to 0\]
+as $Y\to \iy$.
+
+We expect
+\[
+|\set{a,b,c,d,e,f}{\text{height $<X$ with $ax^2+\cdots + fz^2$ has a rational point}}|\ll \fc{X^6}{\sqrt{X}}.
+\]
+This was proved by Serre (it's what he really developed the large sieve for). It was open for 20 years what the lower bound is. Again it was done ($\gg \fc{X^6}{\sqrt{X}}$) by Hooley (Representation of zero by ternary quadratic forms II) in the last few years. Again, the precise asymptotics are unknown. 
+\end{proof}
+%fix $a,b,c,d,e$ and asking for $f$?
+%large sieve with fixing most variables ok.
+The next frontier is finding the constant. 
+Lower bounds are not a science yet; they tend to be ad hoc; there are common themes like the circle method. Upper bound sieves tend to be uniform. 
+%What's the idea for analyzing the lower bound?
+%\footnote{Hooley's paper is hard to penetrate. His writing style is flowery.}
+
+The group action is implicit in Hooley's paper (``effecting linear changes of variable"). Hooley writes old-style. Perhaps if you translate it into modern group theory language it will be clearer.
+
+Can you say anything about the height of the rational point (ex. to find it)? 
+%bound on size of rational point. 
+You have to use effective version of the local-global principle, which Cassel has bounds for. They're not very strong though.
+%
+
+There are many things in genus 0 we don't quite understand yet.
+
+\section{Genus 1}
+
+The main issue is that the local-global principle does not always hold. You need global arguments as well.
+
+The famous example is
+\[
+3X^3+4Y^3+5Z^3=0
+\]
+due to Selmer. This has points over $\Q_p$ for all $p$ and over $\R$ but not over $\Q$. This has an another level of algebraic difficulty.
+%Hasse principle, local-to-global
+
+The first simplification is to suppose that our curve locally has points everywhere, so much so that it has a global point. Take a family of curves where you already have a rational global point; then there are no local obstructions to having points. 
+
+\begin{ex}\label{ex:genus1-1}
+Thus, the first natural case is a genus one curve coming with a marked rational point, i.e., an \ivocab{elliptic curve}.\end{ex}
+
+Any elliptic curve over $\Q$ can be expressed as $y^2 = x^3 + Ax+B$, $A,B\in \Z$. 
+%point of inflection.
+We embedded the curve using the divisor $3(P)$ where $P$ is the marked point, and then changed variable. 
+The rational points of $E=E_{A,B}$ form an abelian group where the marked point is the identity, denoted $E(\Q)$. (The group is the same as the divisor class group.)
+%endow with structure of abelian group.
+
+Mordell showed that $E(\Q)$ is finitely generated. Once you have a marked point, you have a group of rational points. It's abelian and finitely generated. We can ask about statistics of the group. 
+
+The discriminant is $-4a^3-27b^2$. In terms of modular forms these are the $G_4,G_6$ of the corresponding lattice; $G_4^3,G_6^2$ are comparable. It's natural to define the height 
+\[
+H(E_{A,B}) = \max\{|4A^3|, |27B^2|\}.
+\]
+How are the groups distributed in the space of finitely generated abelian groups?
+
+That it is finitely generated means
+\[
+E(\Q) \cong \Z^r \times T
+\]
+where $r$ is the \ivocab{rank} and $T$ is finite (the torsion group). It turns out that $|T|<16$ by Mazur. %$\le 12$.
+It's easy to show that $100\%$ of the time $|T|=1$. To get $|T|=c>1$, certain algebraic things happen to $a,b$; they have to be on a subvariety. There are finitely many of these subvarieties, so there's probability 0 it's on one of them.
+
+For $r=0$ there are finitely many rational points. For $r\ge 1$ there are infinitely many. The rank quantifies how ``infinitely many" you are.
+
+The statistics of the number of rational points is not so interesting. We can distinguish them by the rank.
+
+The natural questions are not about the number of rational points but about the distribution of the rank $r$.
+In particular, do they have finitely many points or infinitely many points more often? When they have infinitely many points, what does the rank tend to be?
+
+Do elliptic curves tend to have finitely many or infinitely many rational points? People guessed both, and they were both wrong.
+
+Goldfeld looked at families of twists of elliptic curves. Katz-Sarnak used a the big book of random matrix philosophy.
+\begin{conj}[Goldfeld, Katz-Sarnak]
+The average rank of elliptic curves over $\Q$ is $\rc2$. More precisely, $50\%$ have rank 0 and $50\%$ have rank 1. 
+\end{conj}
+There are infinite families of curves with rank $2$, but they are very sparse.
+%finitely many, infinitely many rational points.
+As long as you order by something not correlated with rank (ex. conductor, discriminant, height), we think it should be true (no formal equivalence is known though). 
+%how many with bounded conductor.
+%if order by discriminant, height. 
+The number of curves of conductor $<X$ should be $X^{\fc 56}$. $A$ goes up to $X^{\rc 3}$ and $B$ goes to $X^{\rc 2}$. %The best known for 
+We don't know this yet---it's something we need to answer first.
+
+%Can't you use modularity? The problem is that you're trying to count the number of isomorphism classes over $\Q$. Try to go over the congruence subgroups... People have tried a lot of things.
+The best bounds are due to Duke, who shows a $o(X)$ upper bound. There are many ingredients. One has to use class group bounds, modularity, etc. %Another question is to get good lower bounds. 
+You can get a lower bound of $X^{\fc 56}$. 
+
+If you solve this problem, presumably a lot of theorems we prove for height can be adapted to if we order by conductor.
+
+Katz-Sarnak were busy writing their book. They had their manuscript floating around. People (Brumer-Mebuinness, Bektemerov-Stein-Watkins) were doing these computations of ranks. There was no correlation between what the computations were saying and what the conjecture was saying. We made a graph.
+
+\ig{images/1-1}{.25}
+
+%proportion of rank 2 curves increase as well.
+
+Moreover, the number of rank 2 curves went up to $\approx 20\%$. 
+Katz-Sarnak though the graph would turn around. But they believed in their random matrix philosophy. That's what got me interested in the problem as a grad student.
+%rank 1 is more common than rank 0. 
+
+At that time, one couldn't even prove that the average rank is greater than 0 or less than $\iy$.  
+One of the goals I set out to do was to prove this.
+
+What was known?
+\begin{itemize}
+\item
+Based off an idea of Goldfeld, Brumer  and Heath-Brown gave
+the first theoretical evidence that the average rank is bounded.
+The average rank is going up; people on the data side weren't even sure the average rank is finite.
+
+If you assume BSD and GRH for $L$-functions of elliptic curves (2 million dollars of conjectures). Then the average rank is $\le 2.3$ (Brumer) and $\le 2$ (Heath-Brown).
+
+Heath-Brown tried to get $<2$, because that would imply a positive proportion have rank 0 or 1.
+%Goldfeld original idea was to apply to family of quadratic twists but BH ordered by height.
+\item 
+Young showed with the same assumptions that the average rank is $\le 1.7$.
+%improved bounds on 0's of $L$-functions, longer paper.
+%what was the technique of Heath-Brown? Look at them on average.
+%how get cancellation when order by height?
+%quadratic twists get cancellation. 
+%there is a later paper where he orders by naive height, union of quadratic twist families. They get more cancellation. 
+
+%how this can combined with algebraic techniques to lower?
+
+%don't want to look at analytic $L$-functions, but algebraic descent.
+\end{itemize}
+Can we show this by leaving the analytic and $L$-function world and using algebraic techniques? Can we combine these two techniques?
+
+\begin{thm}[Bhargava, Shankar]
+The average rank is bounded and in fact is $<.885$.
+\end{thm}
+We'll start talking about the proof of this next week and Shankar will finish it the fourth week. The final ideas involved root numbers.
+\begin{thm}[Bhargava, Skinner, Wei Zhang]
+The average rank is strictly positive, and in fact $>.2$.
+\end{thm}
+This is tricky because you have to construct rational points. The point constructions are done using work of Skinner and Urban. The expected is $0.5$---this looks good for the conjecture.
+
+%compute far enough to see $>.89$ 
+%another order of magnitude.
+The graph goes past $.9$ now (after another order of magnitude), so it has to turn around! 
+When $A,B$ are small, it's easier for coincidences to happen. There's still around $20\%$ of rank 2 curves, and it's still not going down. It looks like we'll have to compute quite a bit further.
+
+The results are proved using 2-Selmer and 5-Selmer groups. If these methods continue to work for $n$-Selmer groups for higher $n$, then the bounds will approach $0.5$. This gives another way to conjecture that the true average rank is $0.5$.
+
+%not random matrices but arith...
+
+Their conjectures work over other global fields; we get a universal bound $<1.05$ over any global fields of characteristic $\ne2$. The techniques indicate that the conjecture should be true over other global fields. More is not known for function fields. The lower bound does not work because we need to apply Gross-Zagier (totally real fields probably work). Jerry will talk about generalizing the bounds to any number field.
+
+
+\begin{cor}[of proof]
+A positive proportion ($>20\%$) of elliptic curves over $\Q$ have rank 0.
+\end{cor}
+
+\begin{cor}[of proof]
+A positive proportion ($>20\%$) of elliptic curves over $\Q$ have rank 1.
+\end{cor}
+(Arul will explain how to get this with root numbers.)
+
+\begin{cor}[together with work of Wei Zhang]
+A positive proportion ($>20\%$) of elliptic curves over $\Q$ have analytic rank 0, 1.
+\end{cor}
+\begin{thm}
+A positive proportion ($>66\%$) of elliptic curves satisfy the Birch and Swinnerton Dyer rank conjecture.
+%66\% have rank 0 or 1, and...
+\end{thm}
+
+What if any obstacle is there to taking 5-Selmer to higher Selmer groups? We think it's a question of algebraic geometry. The algebraic geometry we used was classical stuff known in the 18th century. Presumably we can do better. %We quoted Eisenbud but didn't really need it.
+
+%degree 2 divisor means you have
+\begin{ex}
+A genus 1 curve with a degree 2 divisor, i.e., a degree 2 map to $\Pj^1$. (In Example~\ref{ex:genus1-1} we had a degree 1 divisor.)
+%marked rational point
+%ex:genus1-1
+By Riemann-Hurwitz, it has 4 ramification poitns, so such a curve can be expressed as 
+\[
+z^2 = f(x,y)
+\]
+where $f$ is a binary quartic form.
+%quartic polynomial
+
+This is not an elliptic curve because it may not necessarily have rational points. We may get 2 points at $\iy$ that may be conjugate to one another. 
+%homogenize
+(The usual way you see this is $z^2 = f(x)$ where $f$ is a quartic polynomial.)
+
+We can ask the same question: varying the 5 coefficients, how are the rational points distributed?
+\end{ex}
+
+All the theorem use each other!
+\begin{thm}
+If all binary quartic forms $ax^4+bx^3y+cx^2y^2 + dxy^3 + dxy^3 + ey^4$ ($a,b,c,d,e\in \Z$) are ordered by height, 
+%vary coefficients and look at all models.
+%change with $n$.
+%genus 0: asking about rational points, equivalent to asking locally.
+%we can ask about proportion having local points everywhere.
+%4 possibilities: local points everywhere? global points?
+\begin{enumerate}
+\item A positive proportion ($>75\%$) of $z^2=f(x,y)$ have a point over $\Q_p$ for all $p$ and over $\R$.
+
+This is very different from the genus 0 case. %for any model
+(We will show a sieve technique, for any genus 1 or higher curve, to get lower bounds.)
+%infinite Chinese remainder. 
+%lower bound sieve.
+\item
+A positive proportion ($<75\%$) of $z^2=f(x,y)$ have a point everywhere locally but no point over $\Q_p$ (they fail Hasse). 
+\item
+A positive proportion of $z^2=f(x,y)$ hve a rational point. %We are able to construct points a positive proportion of the time.
+\end{enumerate}
+\end{thm}
+All 4 possibilites (local points everywhere? global points?) occur a positive proportion of the time. 
+
+%in the case of elliptic curves, do you impose a condition on $A$ and $B$?
+%if you impose $p^4\mid A\implies p^6\mid B$. 
+%don't impose conditions here? Not so simple. We just look at models.
+
+\begin{ex}
+%has dimension ? by Riemann-Roch.
+%all functions pole at degree 3 divisor.
+%degree $n$ divisor. Space of functions is $n$-dimensional by RR.
+%use $n$ functins. $\Pj^{n-1}$
+%genus 1 curve in $\Pj^2$.
+%smooth cubic.
+Genus 1 curves in $\Pj^2$ (corresponding to a genus 1 curve with a degree 3 divisor), i.e., a smooth plane cubic, i.e., a ternary cubic form, which has 10 coefficients:
+\[
+ax^3 + bx^2y + \cdots + jz^3=0.
+\]
+This is the most common cubic that people talk about: smooth cubics in the plane. 
+%how often fail/satisfy the Hasse principle?
+\end{ex}
+\begin{thm}
+The same theorem holds for genus 1 curves in $\Pj^2$.
+\end{thm}
+
+\begin{ex}
+Genus 1 curves in $\Pj^3$ (corresponding to a genus 1 curve with a degree4 divisor), i.e., two quadrics in $\Pj^3$, i.e., two quaternary quadratic forms. They are given by 2 $4\times 4$ matrices with coefficiens $a,b,c,d,e,f,g,h,i,j;k,l,m,n,o,p,q,r,s,t$, $a,\ldots, t\in \Z$ (20 coefficients). 
+
+This is a complete intersection: any genus 1curve in $\Pj^3$ can be represented this way, and conversely, given two quadrics,  generically they will intersect in genus 1 curve. This is a full description of genus 1 curves in $\Pj^3$.
+\end{ex}
+\begin{thm}
+The same theorem holds for genus 1 curves in $\Pj^3$.
+\end{thm}
+These are all classical objects in 18th century algebraic geometry. %studied a long time ago. 
+
+There's one more example.
+\begin{ex}[Example 5]
+Genus one curves in $\Pj^4$. This is NOT a complete intersection. Generically, 5 quadrics intersect in nothing. Many people gave up; some persisted. You can completely describe them as well. 
+
+This is a quintuple of $5\times 5$ skew symmetric matrices $A,B,C,D,E$. 
+
+How to make a genus 1 curve using $5\times 5$ skew symmetric matrices? Given $A,B,C,D,E$, you can make a single $5\times 5$ matrix of linear forms
+\[
+Ax+By+Cz + Dt+ Eu.
+\]
+
+We can takes its determinant? The determinant is 0 because it's an odd skew-symmetric matrix.
+
+What if we take the determinant of a $4\times 4$ skew-symmetric matrix? It's a square. It's a degree 4 form in 5 variables. Taking its square root we get a quadric. There are 5 primary (on-diagonal) $4\times 4$ matrices. 
+
+The square root of the determinant is called the \ivocab{Pfaffian}. The Pfaffian of any primary $4\times 4$ block of $Ax+By+Cz + Dt+ Eu$ gives a quadric in $\Pj^4$.
+
+We get 5 quadrics $Q_1,\ldots, Q_5$ in $\Pj^4$. %any genus 1 curve is intersection of 5 quadrics. Look at family of quadrics go though it, 5-dimensional.
+Classical algebraic geometers noted that 
+\[
+Q_1\cap \cdots \cap Q_5
+\]
+is a genus 1 curve in $\Pj^4$. Conversely any genus 1 curve embedded by a complete linear system is given uniquely (up to change in basis) as $Q_1\cap \cdots \cap Q_5$ where $Q_1,\ldots, Q_5$ come from a unique $(A,B,C,D,E)$, a quintuple of $5\times 5$ skew-symmetric matrices.
+
+(Old reference: Cayley. (Old algebraic geometry) Modern reference: Buchsbaum-Eisenbud. (Modern commutative algebra) It's not clear which is easier. We do a hybrid. See also Fisher; he writes concetely.)
+\end{ex}
+These case $\Pj^1$ helps us understand 2-Selmer, up to $\Pj^4$ helping us understand 5-Selmer. This is the last case we know how to solve.
+%use to study 5-Selmer.
+
+The problem in general is to describe how to use this to understand Selmer. The open question is how can we study genus 1 curves in higher projective spaces? 
+%can take in $\Z$ with right invariants
+Can you describe, even over $\C$, the genus 1 curves in higher dimensional projective space?
+
+%not all 5-S. overcounting. To get finite, need to be off by constn
+%rank is at most a constant times. We can do better than that? 
+(What if we do something that is an approximate parametrization? The problem is that not all 5 quadrics intersect in a genus 1 curve; we get an overcount.)
+Even understanding any infinite sequence of $n$ will do! Note we haven't used modern algebraic geometry.
