@@ -1,0 +1,381 @@
+\blu{2-19}
+
+%We will talk about counting binary forms.
+\section{Counting binary forms}
+%quartic forms something to do with 2-Selmer
+This problem goes back several hundred years (especially for quadratic forms). Counting them has important consequencs in terms of class number, Selmer groups, etc. More generally, the problem is the following.
+
+Let $G$ be an algebraic group and $V$ a representation over $\Z$. %We want to count the number of orbits. 
+We would like to
+\begin{enumerate}
+\item
+understand the meaning of the ``integer orbits" $G(\Z)\bs V(\Z)$ (two points are equivalent if you can get from one to the other by an element of $G(\Z)$). For nice representations, like those with a free ring of invariants, they always have some meaning. It's usually something fundamental in arithmetic.
+\item count the number of elements of $G(\Z)\bs V(\Z)$ having bounded invariants. The invariants are polynomial. %polynomial invariants. counting orbits having polynom
+\end{enumerate}
+\begin{df}
+$(G,V)$ is called \ivocab{coregular} if the action of $G^{ss}(\C)$ (ss means semisimple) %GL only talk about SL.
+on $V(\C)$ has a \vocab{ring of polynomial invariants} that is freely generated, isomorphic to $\C[t_1,\ldots, t_k]$ for some $k$ (there are no relations among generators).
+%poly in coordinates of $V$. Whta are the polys in those coords same under action of $G$.
+%ring of p
+\end{df}
+%invented by vinberg/wittenberg?
+%bd invariants.
+We want each invariant generator to be bounded.
+
+\begin{thm}[Hilbert's fundamental theorem of invariant theory]
+The ring of invariants of a reductive algebraic group $G$ is finitely generated.
+\end{thm}
+\begin{thm}[Borel, Harish-Chandra in Annals]
+Assume $G$ is a reductive algebraic group. 
+
+The number of elements in $G(\Z)\bs V(\Z)$ with fixed values for 
+%fin gen by Hilbert
+%specify some finite number of tihings.
+all invariants 
+%not a lot because finitely generated.
+is finite.
+\end{thm}
+The argument is explicit and uses reduction theory. They bring every element into a finite volume region, which has finitely many integer points. As the invariants grow, we want to know how the number of orbits grows; we'll actually be counting something of arithmetic interest.
+
+(You can also do $S$-integral orbits or specify conditions at $\iy$.)
+
+\begin{ex}[Binary quadratic forms]
+Consider $\{ax^2+bxy+cy^2\}=V$. This was first studied by Gauss. %invariants and study with respect to invariants.
+%The group is $G=\GL_2$. 
+(Gauss considered $ax^2+2bxy+cy^2$,  %and $\SL_2$, 
+but this is a minor difference.) We have that $\SL_2(\C)$ on $V(\C)$ has one invariant, the discriminant
+\[
+D= b^2-4ac.
+\]
+%How many orbits are there? 
+The \vocab{class number} is
+\[
+h(D) = \#[G(\Z)\bs V(\Z)]_D.
+%Sl, GL, diff actions of GL...
+\]
+\end{ex}
+
+\begin{thm}[Gauss, Mertens, Siegel]
+The following hold
+\begin{enumerate}
+\item
+$\sum_{-X< D<0} h(D) \sim \fc{\pi}{18} X^{\fc 32}$.
+\item
+$\sum_{0<D<X}h(D) \ln \ep_D \sim \fc{\pi^2}{18} X^{\fc 32}$. Here $\ln \ep_D$ is the regulator.
+\end{enumerate}•
+\end{thm}
+The problem for positive discriminant is unsolved. It's conjectured that
+\[\sum_{0<D<X} h(D) \sim X^{1+\ep}.\] 
+%We expect it to be constant on average. 
+%2-part is tiny. That's the only thing that can contribute $\ep$? Control the 2-part.
+
+%trace formula.
+\begin{proof}[Proof of (1)]
+First, we construct a a fundamental domain for the action of $\SL_2(\Z)$ on $V(\R)$ (a discrete group acting on a real vector space).  %one $SL_2(\Z)$ represented in it.
+The domain is $|b|\le a<c$.
+
+Recall tht $\SL_2(\Z)$ acts on the upper half plane. Every element of the upper half plane can be brought into the region $|z|\ge 1$, $\Re z\in (-\rc2,\rc2]$. %not being careful with open/closed.
+$\SL_2(\Z)$ acts on the root by a linear fractional transformaiton. It has 1 root in the upper half-plane. Just make sure the root is mapped into the fundamental domain of $\cal H$. %good exercise if you haven't done it.
+
+To prove (a) we need to count lattice points in $\R^3=V(\R)$ such that 
+\[|b|<a<c\text{ and }-X<b^2 - 4ac<0.\] 
+%Gauss calculates the volume.
+This region in $\R^3$ has volume $\fc{\pi}{18}X^{\fc 32}$. Gauss concludes that the number of lattice points is $\sim \fc{\pi}{18}X^{\fc 32}$. (The numbers are usually the same, but not always.)
+
+What is the complication? The region looks something like this.
+
+Even though it has finite volume, it has a cusp going off to $\iy$. This is a big problem in the geometry of numbers: the region may not be bounded. %(If it is bounded, 
+The tiny volume going off to $\iy$ may have few or many lattice points. You have to argue that if you go far enough, you don't pick up as many lattice points as you expect. (This is a good problem to try.)
+\end{proof}
+
+The modern interpretation of this theorem is that $h(D)$ is the class number of $\Z\ba{\fc{D+\sqrt D}{2}}$, the unique quadratic ring with discriminant $D$. %(order in quadratic field)
+
+It tells us how fast orders in quadratic fields grow.  The number of ideal classes is about $\sqrt D$. In the positive discriminant case, $h(D)\ln \ep_D$ is the thing that grows like $\sqrt D$.
+
+(There is another subtlety. Usually people just count the number of invertible ideal classes. For general orders there may be noninvertible ideal classes. We count those too.)
+
+The sieve in this case if elementary---you can do it with your bare hands. In general it's hard and unsolved. If you're only interested in invertible classes you need another sieve (add certain congruence conditions, i.e., $a,b,c$ are relatively prime, to get invertible classes; require $d$ squarefree to count only the ring of integers of quadratic fields).
+
+\begin{ex}[Binary cubic forms]
+Let $V=\{ax^3 + bx^2y + cxy^2 + dy^3\}$, $G=\GL_2$. The action of $\SL_2$ on $V$ over $\C$ again has a unique invariant, the discriminant
+\[
+D = b^2c^2 + 18 abcd - 4 ac^3 - 4 b^3d - 27 a^2 d^2.
+\]
+%learned when $a=1$, $b=0$.
+(When $a=1,b=0$ this is $-4c^3-27d^2$.)
+\end{ex}
+%it took a long time to go from binary quadratics to cubics
+Cubics are a lot harder. It's in 4 dimensions and the surface is more complicated. Writing down all the boundaries explicitly and working by hand as Gauss did, Davenport found the following. You can't count all orbits; you have to restrict the ones you count.
+
+Let $h(D)$ be the number of $\GL_2(\Z)$-orbits on $V(\Z)$ that are irreducible over $\Q$ (don't factor over $\Q$ or equivalently $\Z$ by Gauss's Lemma). 
+\begin{thm}[Davenport, 1960s]
+The following hold.
+\begin{enumerate}
+\item
+$\sum_{-X<D<0} h(D)\sim \fc{\pi^2}{72}X$.
+\item
+$\sum_{0<D<X} h(D) \sim \fc{\pi^2}{24}X$.
+\end{enumerate}
+\end{thm}
+The averge size is a constant, different from the quadratic case where the number was growing.
+
+The proof is the same but more complicated because the cusp contains tons of $a=0$ points of integer discrimant. They can be ignored because they are reducible. Ignoring those, when $a\ne 0$, 100$\%$ of the points you count are irreducible. 
+
+%Argue that the number of lattice points is approximately the volume.
+We'll prove a harder case from which these will be easy.
+
+%RECORDING
+%Why isn't there the log of a regulator? A typical 
+%Stabilizer over $\Z$ tends to be trivial. Positive: infinite stabilizer corresponds to unit group. 
+%%pos corresp to unit gorup. lenght of fund domain is log of regulator. 
+%This doesn't come up in the positive definite case.
+%$O_2$. if pos def $O_2(\R)$ cirle group, finite number points, usually trivial.
+%noncompact torus, unit group is stabilizer in $\SL_2(\Z)$. Fund dom for torus mod unit group.
+%for cubic form, stabilizer is third roots of unity (mod out by them). Think of it in terms of roots. Binary cubic has 3 roots. 
+%factor over $\C$. How does $\SL_2$ act on 3 points. Any 3 poits can be taken to any other 3 points by $\SL_2$. Only get same cubic if map back to 3 points. 6 ways to do so. Stabilizer generically is $S_3$. 
+%$S_3$ is a good indication of what it's going to be.
+%Over $\C$ is generically $S_3$, but generically trivial over $\Z$.
+
+There are 2 arithmetic interpretations, to do with classification of cubic rings.
+\subsection{Classification of cubic rings}
+
+\begin{df}
+A \vocab{$n$-ic ring} (ring of rank $n$) is a ring that is free of rank $n$ as a $\Z$-module, $\cong \Z^n$ as a $\Z$-module. Ex. an order in a degree $n$ number field is a $n$-ic ring.
+%orders contained inside them
+%ring of integers in a number field.
+
+The \vocab{discriminant} of a $n$-ic ring $R$ is defined as follows. For $\al \in \R$, let $x_{\al}$ be multiplication-by-$\al$. Define $\det(x\al)=: N(\al)$ and $\Tr(x\al) =:\Tr(\al)$. 
+%disc 0 degenerat case.
+There is a pairing $\an{\al,\be} = \Tr(\al\be)$. Then $\Disc(R)=\det(\an{,})$. (This definition works more generally than the definition for a field.)
+%work generally
+%det = norm
+\end{df}
+
+What are the $n$-ic rings for...
+\begin{enumerate}
+\item
+$n=1$: $\Z$
+\item
+$n=2$: $\set{\Z\ba{\fc{D+\sqrt D}{2}}}{D\equiv 0,1\pmod 4}$, where $D$ is the discriminant. (When $D=0$, you adjoin a square to 0, i.e., get $\Z[X]/(X^2)$. When $D=1$ we get $\Z \times \Z$. We're modding out by the formal polynomial relation $\fc{D+\sqrt D}{2}$ that it would satisfy.
+
+(To show these are all the quadratic rings, write $\tau$ as a linear combination of $1,\tau$. Write as $\Z[\tau]/f(\tau)$, $f$ quadratic. Translate $\tau$ by in integer. $D$ characterizes quadratic rings.
+%For $D\equiv 0,1\pmod 4$, 
+\item 
+$n=3$: The ring is not specified any more by the discriminant. There can be many cubic rings of the same discriminant, but at least 1 for every discriminant, $Z\times \Z\ba{\fc{D+\sqrt D}{2}}$. 
+
+A cubic ring always has a basis over $\Z$, $1,\om, \te$. To specify the ring, we need to know how $\om,\te$ multiply. 
+%need know how multiply.
+We have 
+\bal
+\om^2&=?+?\om+?\te\\
+\te^2 &=? + ?\om +?\te\\
+w\te &=? +?\om+?\te.
+\end{align*} 
+%combin of 1, $\om$, $\te$.
+We can't assign random things because we have to impose associativity.
+Simplification: we can translate $\om$ by any constant. It only changes the cofficient of $\te$ of $w\te$; we can make it disappear. Similarly, we can translate $\te$ to make $?\om$ disappear. 
+
+A cubic ring always has a \vocab{normal basis} over $\Z$, with 
+\bal
+\om^2&=l+b\om +a\te\\
+\te^2 &=m+d\om -c\te\\
+\om\te &=n.
+\end{align*} 
+Exercise: write the multiplication table and use the associative law. Find that $l,m,n$ uniquely are determined by $a,b,c,d$. Use $\om^2\te=\om\te\cdot \om$ and $\om\cdot \te^2 = \om \te \cdot \te$---these imply associativity of the entire ring. We get 6 equations (that are dependent) having a unique solution,
+\bal
+\om^2&=-ac+b\om +a\te\\
+\te^2 &=-bd+d\om -c\te\\
+\om\te &=-ad.
+\end{align*}
+Giving a cubic ring with a normal basis is equivalent to giving a quadruple $(a,b,c,d)$.
+
+How do we get rid of the normal basis? A cubic ring can have many normal bases, but not that many. Do a $\GL_2(\Z)$-change of basis on $\om,\te$. There's a unique way to normalize to get a normal basis. There's a $\GL_2(\Z)$-set of normal bases. 
+
+Thus cubic rings are in bijection with quadruples modulo whatever the action of $\GL_2(\Z)$ defined above is. We 
+know the representations of $\SL_2(\Z)$, and $(a,b,c,d)$ gives a 4-D representation. We can guess what it is: $\Sym^3$, binary cubics (check this). 
+
+In summary, $\GL_2(\Z)$ acts on normal bases $\an{1,\om,\te}$, therefore acts on $(a,b,c,d)$, in fact just as $\GL_2(\Z)$ acts on the binary cubic $ax^3+bx^2y + cxy^2 + dy^3$. %as pretty as can be.
+\end{enumerate}
+We've sketched the proof of the following.
+\begin{thm}[Levi, Delone-Faddoev, Gan-Gross-Savin]
+There is a bijection 
+\[
+\{\textnormal{cubic rings}\}/\sim \lra  G(\Z)\bs V(\Z).
+\]
+%Take the coefficients and make a multiplication table. 
+The discriminants of the cubic ring is the discriminant of the corresponding binary cubic form.
+%$\GL_2(\Z)$-invariants same up to constant, have to check at 1 point.
+%check by degree.
+\end{thm}
+(Both disciminants are degree 4 and $\GL_2(\Z)$-invariant, so must be the same up to a constant; you can check the constant is 1.)
+
+%degree 4.
+Things are as nice as can be.
+
+This was done very coordinate-full, but you can do it coordinate-free. 
+
+The polynomial should have some meaning in terms of the ring. We need this for when we want to do over other base rings/schemes. We discover things by explicit calculations, but then we want to know what's going on.
+
+There is a natural meaning. Cubic form on rank 2 module... (RECORDING)
+$R/\Z\to \La^3 R$. The map is 
+\[
+x\mapsto 1\wedge x \wedge x^2.
+\]
+%cubic ring spanned by $x$.
+%cubic form. 
+%rank 2 module to rank 1 module. 
+%it's exactly $ax^3+\cdots +dy^3$.
+%in practice use explicit calculations.
+
+Now that we have a nice interpretation, the theorem of Davenport immediately have meaning: they count cubic rings of negative/positive discriminant. There are $\fc{\pi^2}{72}$ cubic rings (that are integral domains, i.e., order in cubic field) per negative discriminant on average, and $\fc{\pi^2}{24}$ orders per positive discriminant.
+%never achieved for any disc
+
+In the quadratic case the form is determined by the discriminant. In the cubic case it is not determined, but there are a constant number on average.
+
+A irreducible form corresponds to an irreducible ring, i.e., integral domain. So we are counting something very natural.
+
+%count orbits tells you something fundamental.
+%In quadratic case, 1. Here, it's more complicated behavior.
+
+%in binary quadratic case. Certain congruence conditions 
+%almost fundamental, sieve method.
+%maximal order.
+%congruence conditions, 
+%sieve methods.
+The sieve to maximal orders is done by Davenport and Heilbronn. %common feature in all representations. 
+We want to restrict to squarefree $D$; this is already nontrivial for binary cubic forms. In general, this is unsolved to impose squarefree condition.
+%later examples need new sieve methods.
+
+What fails to generalize to $n$-ic rings?
+
+%solve class number 1 problem for binary cubic.
+%irreducible ones...
+%a lot of times value 0.
+%unbounded.
+%2-part log x.
+%bound average go to primes.
+%upper bound sieve on primes, hope constant is small.
+
+%quartic and qiuintic rings
+We can generalize to quartic or quintic rings, or forms. They diverge at $n=4$. We'll focus on forms.
+
+\subsection{Binary quartic forms}
+What changes? They don't classify quartic rings. 
+%One invariant for the action of $\GL_2$. 
+
+Now there are 2 independent invariants for the action of $\SL_2$. (The representation is coregular over $\C$. It is not free over $\Z$.)
+%generated by 2 things. coregular.
+For $ax^4+\cdots +ey^4$, the invariants are generated by $I,J$ where
+%degree 2
+\bal
+I&=12 ac -3 bd + c^2\\
+J&=72 ace + 7bcd - 27 ad^2 - 27 b^2e - 2c^3\\
+D&=\fc{4I^3-J^2}{27}.
+\end{align*}
+(The discriminant is not generated by $I,J$ over $\Z$; it is over $\Z[\rc 3]$.) This is classic, in Hilbert's book on invariant theory.
+%3, 6, 4. So that free over $\Z$. Scale everything.
+%Gauss a, 2b, c: discriminant is $b^2-ac$.
+The way to find this: $\SL_2$ acts on $\Sym^4$ of the standard representation. Decompose
+\[\Sym^2(\Sym^4(\text{std})) = \Sym^8\pat{std} \opl \ub{\Sym^4\pat{std}}{\text{Hessian}} \opl \ub{\Sym^0\pat{std}}{I}.\]
+
+We can count binary quartic forms with bounded invariants, but now we have to say both $I,J$ are bounded. We define a height  in terms of both $I,J$. 
+\[
+H(f): = H(I,J) := \max\bc{|I|^3, \fc{J^2}4}
+\]
+(They have different degrees; we want to scale correctly. Constants don't really matter, and are for convenience.)
+
+Question: Let $G=\GL_2$. What is $\#[G(\Z)\bs V(\Z)]_{H(I,J)<X}$?
+%what are asymptotics? $X^{\fc 56}$. $X^{\rc2}X^{\rc 3}$.
+%divide by $X^{\fc 56}$, get per height.
+
+For a given height, there are a given number of $I,J$. How many are there for given values of $I,J$? To answer this we get total counts and divide by number of $I,J$.
+%constants don't matter.
+
+Birch and Merriman show that if you only fix tje discriminant, only finitely many of that discriminant. This is special for binary quartic forms. %asymptotics bad.
+%We'll show $\#[G(\Z)\bs V(\Z)]_{H(I,J)<X}$ is finite like the binary cubic case.
+
+If the answer is $cX^{\fc 56}$ for $c>0$, then this means there exists a positive constant number of binary quartics up to equivalence per $(I,J)$, on average. The best known bounds classically look like $cX$, pretty far off.
+
+The complication is that the reduction theory is harder: it's in five dimensions. The degree of the boundaries have exploded. There are 2 invariants. You have to loosely estimate everything.
+\begin{thm}[Yang, Ph.D. thesis (2005)]
+For every $\ep>0$,
+\[\#[G(\Z)\bs V(\Z)]_{H(I,J)<X}\ll X^{\fc 56+\ep}.\]
+\end{thm}
+
+In the binary and cubic case we can do things by hand. That strategy we have to abandon at some point. Very soon the boundaries cannot be written in the history of the universe; they gets big very quickly. The spaces have very commplex invariants. We want a coordinate-free description, carrying over to the reduction theory, etc. There must be something deeper.
+
+If you put in the irreducibility condition, . we get rid of $\ep$ and specify the constant. We need the constant to average Selmer sizes.
+
+Binary quadratics have 2 roots: 2 real or 2 complex. Binary cubics have 3 roots: 3 real or 1 real and 2 complex. That's why there were 2 parts. Now there are 3 parts: 4 real, 2 real and 2 complex, 4 complex.
+\begin{thm}[Bhargava, Shankar, Binary quartics]
+%get rid of $\ep$ and specify the constant.
+%average Selmer sizes.
+Let $h^{(i)}$ denote the number of forms with $i$ pairs of complex roots.
+\begin{enumerate}
+\item
+$\sum_{H(I,J)<X} h^{(0)} (I,J)=\fc{4}{135}\ze(2)X^{\fc 56} + O(X^{\fc 34+\ep})$.
+%same $I,J$ don't have the same number of real roots. 
+%pairs of complex real roots.
+\item
+$\sum_{H(I,J)<X} h^{(1)} (I,J)=\fc{32}{135}\ze(2)X^{\fc 56} + O(X^{\fc 34+\ep})$
+\item
+$\sum_{H(I,J)<X} h^{(2)} (I,J)=\fc{8}{135}\ze(2)X^{\fc 56} + O(X^{\fc 34+\ep})$
+\end{enumerate}
+(Note it's possible for forms to have the same $I,J$ but have different number of real roots.)
+\end{thm}
+%bin quad and cubics.disc only inv, can't take every possible value.
+%$(I,J)$ can't take every possible value. It's nice to know what they are
+The analogue of $D\equiv 0,1\pmod4$ for binary quadratic forms is the following.
+\begin{thm}
+$I,J$ satisfy one of the following 4 congruences.
+\begin{enumerate}
+\item
+$I\equiv 0 \pmod 3$ and $J\equiv 0 \pmod{27}$.
+\item
+$I\equiv 1\pmod 9$ and $J\equiv \pm 2\pmod{27}$.
+\item
+$I\equiv 4\pmod 9$ and $J\equiv \pm 16\pmod{27}$.
+\item
+$I\equiv 7\pmod 9$ and $J\equiv \pm 7\pmod{27}$.
+\end{enumerate}
+Such $(I,J)$ are called \vocab{eligible}.
+\end{thm}
+How many $I,J$ of bounded height are there satisfying these conditions? %divide by number of eligible. 
+From these congruence conditions we can work out the proportion. %get the following.
+\begin{cor}
+The number of binary quartics per eligible $(I,J)$ with $0,1,2$ pairs of complex roots is $\fc{\ze(2)}{2}$, $\ze(2)$, $\fc{\ze(2)}2$, respectively.
+%$\ze(2)/...$ a reason for this
+\end{cor}
+%expect true no matter ordering...
+
+We will prove this. We want to visualize the regions without writing explicit equations. %; we want 
+This can improve binary quadratic and cubics as well. The equations for binary quartics were too complicated to handle classically.
+
+We won't make 1 fundamental domain and count. We use the fact that no matter which you pick, the number of lattice points is the same. %Any domain has to have the same number . 
+Let's count in the union of fundamental domains and divide by the number of domains. Their union will be a nicer region. In fact, we'll define a continuous sweep of fundamental domains!
+
+
+%common classic
+
+There are many maps going from one $n$-ic form to a $m$-ic form. A common, classic one is the Hessiam. Given a binary $n$-ic form, obtain a binary $2(n-2)$-ic form
+\[
+\detm{\pdt{f}{x}(x,y)}{\pdxy fxy(x,y)}{\pdxy fyx(x,y)}{\pdt fy(x,y)}.
+\]
+%$\SL_2$ equivariant$.
+This sends binary cubics to binary quadratics. For $n=4$, it sends a binary quartic to binary quartics. 
+%degree of form, degree of coefficients.
+
+People have searched for geometric meaning. Fulton-Harris talk about geometric plethisms.
+
+Binary cubic means 3 points in $\Pj^1$; binary quadratic means 2 points in $\Pj^2$. Take the linear transformation which cycles them. It has 2 fixed points. That's the binary quadratic!
+
+Can you similarly interpret the map from binary quartics to binary quartices? I don't know. 
+
+Here's something people don't know the answer to. 
+\[
+\Sym^2(\Sym^{2n+1}\pat{std}) \stackrel{\text{unique}}{\supset} \Sym^2\pat{std}
+\]
+using weights (representation theory).
+There's always a way to go from an odd number of points in $\Pj^1$, to 2 points. %This computation says you can 
+We saw the geometric way of constructing that for $n=3$. It's unsolved to find a geometric description.
+%isn't necessarily something that cycles. What's the transformation?
