@@ -1,0 +1,298 @@
+
+\section{Counting binary cubic forms}
+
+\blu{2-26:
+
+We want to count the average number of $\GL_2(\Z)$-classes of integral binary $n$-ic forms having integral invariants.
+
+Binary quadratic forms $ax^2+bxy+cy^2$. The unique invariant is the discriminant $D=b^2-4ac$. Let $h(D)$ be the number of classes of binary quadratic forms having discriminant $D$. 
+
+It's conjectured that for every $\ep>0$, $\text{avg}(h(D))=D^\ep$ if $D>0$. This is unsolved. We don't know how to prove an exponent better than $\rc2$. It's conjectured that for infinitely many $D$, it's 1.
+
+We know $\text{avg}(h(D))=c|D|^{\rc2}$ if $D<0$ (Gauss/Mertens/Siegel). We understand negative discriminants but not positive discriminants because there is a nontrivial stabilizer for $D>0$.
+
+For binary cubic forms $ax^3+bx^2y+cxy^2+dy^3$, $D=b^2c^2 - 27a^2d^2 + 18abcd - 4ac^3 - 4b^3d$. 
+We will prove that $\text{avg}(h(D))=\begin{cases}
+\fc{\pi^2}{72},&\text{if }D>0,\\
+%orders per discriminant
+%these can be interpreted in terms of cubic rings.
+\fc{\pi^2}{24},&\text{if }D<0,
+\end{cases}$
+both due to Davenport. Note we only count irreducible forms over $\Q$.\footnote{Otherwise the answers would be bigger; the total number of lattice points would be greater than the volume.}
+This says that the average number of classes per discriminant is finite.}%
+
+The method of proof is to count the number of binary cubic forms of discriminant of absolute value $<X$ in a fundamental domain for the action of $\GL_2(\Z)$ on $V(\R)$. 
+%cusp many points
+Here $V$ is the space of binary cubic forms. 
+Davenport's method does not work for higher degree forms. We need to have a conceptual reason for why we can count points in these regions in general.
+
+We give Davenport's fundamental domain when $D>0$. Recall Gauss's fundamental domain for binary quadratic forms $ax^2+bxy+cy^2$ with $D<0$: it is $|b|<a<c$. %$\SL_2(\Z)$ reduced into this region.
+
+The Hessian of a binary cubic form that has $D>0$ gives a binary quadratic form with $D<0$. The Hessian of $ax^3+bx^2y+cxy^2+dy^3$ is\footnote{The 2 fixed points of the transformations cycling the roots are the 2 roots of the Hessian. Suppose they're defined over $\Q$ together. Take the linear transformation that cycles them. Each should be defined over a quadratic field. Is it the resolvent quadratic field? That doesn't happen. You get a quadratic field of disciminant $-3$ times the original discriminant, $\Disc(\text{Hess}(f))=-3\text{Disc}(f)$.}
+\[
+\text{Hess}(x^3+bx^2y+cxy^2+dy^3) = (b^2-3ac)x^2 + (bc-9ad)xy + (c^2-3bd)y^2.
+%unique reduced form for every binary cubic
+\]
+Call $f$ \vocab{reduced} if $\text{Hess}(f)$ is reduced in the sense of Gauss.
+%look for in some symmetric power of $\Sym^3$.
+Recall that $\SL_2$ acting on the standard representtion; we have $\Sym^3(s+d)$ is the set of binary cubics, and $\Sym^2(\Sym^3\pat{std})=\Sym^6\pat{std}\opl\Sym^2\pat{std}$.
+
+There is no symmetric power of binary quartics that has $\Sym^2$ in it. (This is a nice exercise using the representation theory of $\SL_2$. Use weights.) Thus this reduction of reduction does not work for binary quartics. (It also doesn't work with binary cubics with $D<0$. Then we get a binary quadratic with $D>0$; we don't know how to reduce those.)
+%if there was a sym3 there'd be a sym 2.
+
+Counting average size of class number was nicer because you have linear inequalities. Use the Principle of Lipschitz. If the region is rounded enough, the number of lattice points grows as the volume. This is basically the theory of Riemann integration. %The number of lattice points grows like the volume.
+ Letting $x\to \iy$, you're looking at a homogeneously expanding region. By hand there are few points of interest in the cusps which has small volume. Try this; this is the only principle you need for binary quadratics.
+
+The principle of Lipschitz isn't enough for binary cubics. In the cusp there are more points than the volume would indicate. He wrote a paper ``On a paper of Lipschitz" that says we need a better way to count, and to give an explicit error term depending on the region. %recording
+
+%Fixing the Hessian we might have many cubic forms the same?
+%Many binary quads not Hessian of any binary cubic.
+%can't count bin quads. Need to count $a,b,c,d$, sometimes way more points.
+%only interested in counting irreducible forms. Cusps contian mostly reducible forms.
+
+\begin{thm}[Davenport, ``On a principle of Lipschitz" with erratum]\footnote{Lang made a big fuss for many years about the error. Finally, Lang published an erratum to fix it.}\label{lem:davenport}
+Let $R$ be a bounded semi-algebraic region in $\R^n$ defined by  $\le k$ polynomial inequalities of degree $\le l$. The number of lattice points in $R$ is
+\[
+\Vol (R) + O_{k,l}(\max\{\Vol(\ol R,1)\}),
+\]
+where $\ol R$ ranges over all projections of $R$ onto smaller dimensional coordinate hyperplanes.
+%tiny ball around origin
+\end{thm}
+
+When the region is round and big, we expect number of lattice points to be the volume. The volume is the maximum of the projections to smaller dimensional hyperplanes. If the region is round, it will be 1 order of magnitude less. When it is wrong is when the projection is thin. Then there is a projection where the error term is the same order of magnitude.
+
+Take a line through the region $R$. Get a union of integrals. It will be bounded in terms of the number of polynomial inequalities. The degrees of those inequalities. (A line can intersect at most degree many times. Induct dimension by dimension. In each dimension count on a union of unit intervals. Add an error with the number of intevals. %The number of intervals depends only on the ... %Recording.
+
+%if you pick a diffferent constant you can reduce the constant. 
+
+If you change the lattice do you do better?
+
+%divide into pieces, get error term small. Get error term less.
+\begin{thm}[cf. Theorem~\ref{thm:davenport}]
+\bal
+\sum_{-X<D<0} h(D)&= \fc{\pi^2}{72}X + O(X^{\fc{15}{16}})\\
+\sum_{0<D<X} h(D) &= \fc{\pi^2}{24}X + O(X^{\fc{15}{16}}).
+\end{align*}
+\end{thm}
+Davenport proved this usign explicit fundamental domain. Davenport uses clever relations between the inequalities.
+(When $D$ is negative, it has a unique root in the upper half-plane. Do the Gauss trick there. He works the inequalities on $a,b,c,d$ explicitly; they are degree 2 inequalities.)
+%know they exist.what are the features that allow us to prove this, without knowing explicitly knowing the inequalities. 
+
+In general we don't want to write down explicit inequalities. We want to know that are the features that allow us to prove bounds, without  knowing explicitly knowing the inequalities. 
+
+The way to do this is to use fundamental domains in the group. Here's a way to make fundamental domains for $G(\Z)$ on $V(\R)$, for $G(\Z)=\GL_2(\Z)$ and $V(\R)$ the space of binary cubics.
+
+%action of $G(\Z)$ on $\ol G$.
+Let $\cal F$ denote a fundamental domain for the action of $G(\Z)$ on $G(\R)$. Let $v_0\in V(\R)$ have positive discriminant. Then $\cal Fv_0$, considered as a multiset $\set{gv_0}{g\in \cal F}$, is a union (as multisets) of 6 fundamental domains for the action of $G(\Z)$ on $V^+(\R)$. 
+%Here $\cal Fv_0$ is considered as a multiset. 
+%$G(\Z)$ acts on $G(\R)$
+%not disjoint.
+\begin{proof}
+%proof by lgebraic manipulation
+Any positive discriminant binary cubic form is equivalent to any other by an element of $G(\R)$ because there's only 1 invariant. Binary cubic form is 3 points on $\Pj^1$. By linear fractional transformation you can take them to any other 3 points. Any can be brought to any other by an element of $G(\R)$.
+
+Intuitively,
+\[
+\ba{G(\Z)\bs G(\R)}%cal F
+ \cdot \ba{G(\R)\bs V^+(\R)}%v_0
+ =G(\Z)\bs V^+(\R).
+\]
+Where does the 6 come from? 
+%There are 6 transformations that permute the 3 points, but don't have to worry about stabilizer over $\Z$. Only binary quadratic forms with positive discriminant. After that $\Z$-stabilizer is generically trivial.
+
+Over $\R$ there are stabilizers of size 6! There are further transformations that fix $v_0$, 6 of them! A fundamental domain for this action is $\rc6$ of the point $v_0$. The right statement is
+\[
+\ub{\ba{G(\Z)\bs G(\R)} }{\cal F}\cdot \ub{\ba{G(\R)\bs V^+(\R)/\Stab_{G(\R)}(v_0)}}{\rc 6v_0} =G(\Z)\bs V^+(\R).
+\]
+\end{proof}
+%miss factors of 6. 
+
+We can describe $\cal F$ explicitly. %make fund domain for $\SL_2(\R)/\SL_2(\Z)$. Act trans on upper half-plane. 
+
+For $\SL_2(\R)/\SL_2(\Z)$, we can describe $\cal F$ as the set of $g\in G(\R)$ taking $i$  
+%The orthogonal group fixes $i$. We can hit $i$ with anything that takes $i$ 
+into the guillotine region---that's a fundamental region for the  $G(\Z)$ action on $G(\R)$. The upper half-plane is a homogeneous space for $G(\R)$.
+
+Gauss's fundamental domain for binary quadratic forms is
+\[
+\cal F \cdot (x^2+y^2)= \set{ax^2 + bxy + cy^2}{|b|<a<c}.
+\]
+The reason this is a set not a multiset is that everything is weighted by $\SO_2$ so everything has the same weight. You can hit with the orthogonal group and then go everywhere.
+
+We can think of Davenport's fundamental domain for $D>0$ this way  as well, even though he didn't. His fundamental domain is
+\[
+\cal F\cdot f=\set{(a,b,c,d)}{|bc-9ad| < b^2 - 3ac<c^2-3bd}.
+\]
+%(x^2y-xy^2)Note the zeros of $x^2y-xy^2$ are $0, 1, $\iy$
+%disc 1. Factor of $-3$.  $x^2+3y^2$.
+%hess need to be 0.
+%Take the Hessian.
+%bc-4ad.
+%a=1,b=3,c=3,d=?
+where $f$ is a binary cubic such tht the Hessian is a multiple of $x^2+y^2$ (e.g., $f=x^3-3xy^2$).
+%any fd peole have made can be thought of in this way.
+
+For Davenport's fundamental domain for binary cubic forms with $D>0$, there's an explicit description of $\cal F$ using the \ivocab{Iwasawa decomposition} (ex. for the general linear group $N'$ is lower triangular matrices, $A'$ is the diagonal matrices, $K$ is the orthogonal group) %DK, low triang, diag, orth
+\[
+\cal F=N'A'K'\La
+\]
+where 
+\bal
+N'&=\set{\matt 10n1}{|n|\le \rc2}\\
+N'(t)&=\set{\matt 10n1}{n\in \nu(t) \subeq \ba{-\rc 2,\rc2}}\\
+%n\in 
+A'&=\set{\matt t00{t^{-1}}}{|t|\le \sfc{\sqrt3}2}\\
+K&=\SO_2\\
+\La &=\set{\matt \la00\la}{\la>0}=\{\la>0\}.
+\end{align*}
+%should be S?
+
+What are all elements take $i$ back into the fundamental domain? Hitting with $\la$ does nothing. We can hit $i$ with all $K=\SO_2$. Now you can move it around. Use matrices $\smatt{t^{-1}}00{t}$ to move it around. 
+The diagonal matrices move it up and down on the vertical line $\Re z=0$. The bound on $t$ makes sure it doesn't go below $\Im<\rc2$. Now we can hit it with lower triangular matrices which moves it left and right. We get a little more than the fundamental domain (we get a segment of the circle).
+
+$SO_2$ and $N'(t)$ are compact. The tentacle-ness is $A'$. ($\La$ is bounded because the discriminant is bounded.) We've isolated the problem! $\cal F$ is nonbounded because of the $A$. That's the part we have to deal with when we hit $v_0$.
+
+%Assume $V$ of a certain shape.
+The point is that $\cal F v$ would give a fundamental domain no matter which $v$ you take. We take advantage of this. Davenport, etc. took a clever $v$ and tried to count points there. We can avoid this and take any $v$. We can count points in many fundamental domains. Even better, take a whole ball of points, and divide by the ball. When you have a ball of $v$'s, the tentacles swirl about. Divide by how much you swirled.
+%not any region has a tentacle going off to infinity.
+
+%perturb fundamental region and still have fundamental region.
+
+Let $B$ be a $K$-invariant compact region in $V^+(\R)$. For any $v\in B$ let %class num up to X.
+\bal
+\cal R_X(v)&=\cal F\cdot v\cap \{|\Disc|<X\}\\
+&=N'A'K\La'v&\text{where }\La'=\bc{\la <\pf{X}{|\Disc(v)|}^{\rc 4}}.
+\end{align*}
+%reducible vs. irreducible
+\begin{lem}
+Let $v\in B$. 
+The number of reducible integral binary cubic forms in $\cal R_X(v)$ with $a\ne 0$ is $O_\ep(X^{\fc 34+\ep})$. 
+%assume leading coefficient nonvanishing. Chance reducible is very low. 
+%sides are $X^{\rc 4}$ each. The number of reducible things is... 
+\end{lem}
+Note $a=0$ means reducible, and there are tons of $a=0$ forms; that's where the cusp is. As $t\to \iy$, $c,d$ become large and $a,b$ become small. $t^{-3}$ makes $a$ really small.
+%mult one side with $t$ and the other side with $t^{-1}$.
+%that restricts the range of $t$.
+
+%$\La$ goes up to $X^{\rc 4}$$K$ compact. 
+Think of the action
+\[
+N'A'K\La v.
+\]
+\begin{enumerate}
+\item
+$\La$: coordinates up to $X^{\rc 4}$.
+\item
+$K$: compact, so size is still $O(X^{\rc 4})$.
+\item
+$A'$: $a,b,c,d$ are multiplied by $t^{-3},t^{-1},t,t^3$, respectively. %what do lower triangular mats do?
+\item
+$N'$, as a lower triangular matrix, adds the small stuff ($a,b$) to the large stuff ($c,d$).
+\end{enumerate}
+%$at^{-3}, bt^{-1},\ldots$
+$c,d$ can get really big; that's where the infinite part is.
+
+%$d\ne 0$. divisor. 
+\begin{proof}
+If $d=0$, the number of choices for $a,b,c$ is $O(X^{\fc 34+\ep})$.  %choices for $a,b,c$ at most ... $+\ep$.
+%3 integers $X^{\fc34}$ total is $X^{\fc 34+\ep}$. Some things could be 0
+(But it's possible $b,c=0$. But if $b=0$, we can bound $ac$ and do better, etc.)
+
+(Important in this argument: when small coordinates are nonzero, you have a negative 2-weight which you can use to bound things by multiplying.) 
+
+If $d\ne 0$, and a form $(a,b,c,d)$ is reducible, then it has a linear factor $px+qy$. (Then $c$ is determined.) Fix $a,b,d$; then $abd=O(X^{\fc 34})$ so thare are $O(X^{\fc 34+\ep})$ choices. %$q\mid d$. $ad\le X^{\rc 2}$. Number of factors on the order of $x$ is $X^\ep$.
+%abd\le X^{\fc 34}$.
+Then $p\mid a,q\mid d$, implying that $p,q$ are determined up to $X^{\ep}$ choices. ($N$ has at most $N^{\ep}$ factors.)
+%p,q factors of $a,d$.
+\end{proof}
+If $a=0$ then we have $O(X)$ instead.
+%cusp contained lots of reducible points. Everywhere else in the main body, we have only irreducible points.
+
+Note one can use a $p$-dic argument (reducible means reducible mod $p$) to get $o(X)$. %Reducible globally means reducible mod $p$. 
+But the global argument gives the right order of magnitude.
+
+\subsection{Averaging}
+Let 
+\[N^+(X)=\sum_{0<D<X} h(D)\] be the number of irreducible lattice points with $a\ne 0$ in $\cal R_X(v)$ for any $v\in B$. We can sum this up over all $v\in B$. $B$ is an infinite set, so integrate; use the volume. %factor of 6
+This is (the numerator is a constant)
+\bal
+&=\fc{\int_{v\in B} \#\set{x\in \cal Fv \cap V^{\text{irr}}(\Z)}{|\Disc(x)|<X}|\Disc(v)|^{-1}\,dv}{6\int_{v\in B}|\Disc(v)|^{-1}\,dv}
+\end{align*}
+The nice measure to take here is $|\Disc(v)|^{-1}$ because it's an invariant measure---it doesn't change under $\SL_2(\Z)$. When you scale $v$ by 2, the discriminant goes up by 16. But the Euclidean measure goes up by 16 as well. ($dv$ is not a nice measure. The group likes the measure above.) The degree of the derivative is the dimension of the space. 
+
+This is a tautology. Now we change the order of integration---we make the integral over the group, so we can do integrals inside $\GL_2(\Z)$. (The denominator is a constant $C$.) Here $dg$ is the Haar measure on $G(\R)$. %$x$ ranges over $\cal Fv$. %$G$ is varying over the group and $v$ varies over $V$
+\bal
+&=\rc C\int_{g\in \cal F}\#\set{x\in yB\cap V^{\text{irr}}\cap V^{\text{irr}}}{|\Disc(x)|<X}\,dg
+\end{align*}
+%natural in terms of Iwasawa decomposition.
+The Haar measure has a nice description in terms of the Iwasawa decomposition.
+\[
+dg = t^{-2}\,dn\, d^{\times}t \,dk\,d^{\times }\la.
+\]
+Here $d^{\times}t=\fc{dt}{t}$ is the multiplicatively invariant measure.
+Now 
+\bal
+&=\rc{C} \int_{\la =0}^{X^{\rc 4}} \int_K \int_{t=C''}^{\iy} \int_{n\in \nu(t)} \#\set{x\in n\matt t{}{}t^{-1}k\la B\cap V^{\text{irr}}(\Z)}{|\Disc|<X} t^{-2}\,dn\, d^{\times}t \,dk\,d^{\times }\la\\
+&=\rc{C} \int_{\la =0}^{X^{\rc 4}} \int_{t=C''}^{\iy} \int_{n\in \nu(t)} \#\set{x\in n\matt t{}{}t^{-1}\la B\cap V^{\text{irr}}(\Z)}{|\Disc|<X} t^{-2}\,dn\, d^{\times}t \,d^{\times }\la
+\end{align*}
+%v's and B's don't have discriminant d...
+%supposed to have pos measure, ft part?
+$B$ is  a fat ball in 4-D space. Hitting it with $\la$; it homogeneously expands; thus we can remove $K$ above.
+%K-invariant.
+%like box, but
+%ab shrunk, cd larger.
+%easy to understand how many lattice points there.
+Instead of counting points in an unbounded region, we're not counting in a simple region.
+
+Let 
+\[
+B(n,t,\la,X) := n\matt t{}{}t^{-1}\la B,
+\]
+$B$ stretched using these parameters.
+\begin{lem}
+Let $C'''$ be the maximum of the absolute values of coefficients of $v\in B$. ($B$ is compact, so this exists.) 
+Then the number of lattice points in $B(n,t,\la,X)$ with $a\ne 0$ is
+\[
+\begin{cases}
+0,&\text{if }\fc{c'''\la}{t^3}<1\\
+\Vol(B(n,t,\la,v)) + O(\max\{t^3\la^3, 1\}),&\text{otherwise}.
+\end{cases}
+\]
+\end{lem}
+If we squeezed the box too much, the only thing left is $a=0$. Once that smallest side (range of $a$) is big enough, the volume is a good approximation of the number of points.
+\begin{proof}
+If $\fc{C'''\la}{t^3}<1$, then the only integral value of $a$ is $a=0$. 
+
+Otherwise, the number of lattice points with $a\ne 0$ is the volume with error given by Davenport's lemma~\ref{lem:davenport}. %b, c, d coordinates.
+%cd: more $t$ less $\la$. This wins.
+
+Note the 1 in $\max\{t^3\la^3, 1\}$ is a major source of errors in the geometry of numbers?
+%just irred ones? real box. Now we're counting everything, just with $a\ne0$. Later use ... to argue that even though we're counting everything, the number that are reducible is very small.
+\end{proof}
+%opposite of (1) is true, can use to show...
+
+Then  (note we cut off the integral before)
+\[
+N^+(X) = \rc 6 \Vol(\cal R_X(v)) + \ub{O\pa{\int_\la \int_{t=\la^{\rc 3}}+\iiint \max\{t^3\la^3,1\}\,dg}}{O(X^{\fc 56})}
+%
+\]
+If we put the volume everywhere we get the volume back. But we didn't, so we have to include errors. % Other error from putting that error everywhere. These are standard integrals. They have to work in the the ranges...
+%only put it mostly everywhere. Error term
+
+These are standard integrals. (Exercise.) They give the same thing, $O(X^{\fc 56})$.  Our result is better than Davenport's. If you work harder, you can show $X^{\fc 56}$ is the second-order term. %smoothing . 
+%they all do.
+%hard to prove with single region.
+%took right to 2nd order term.
+
+The method did better, and we never wrote down inequalities for the fundamental domain! We just need to know what the features were, the $\matt t00{t^{-1}}$ which characterizes the infinite part. %use all have same number of points, optimal error term.
+%equiv class of forms with $n=1$.
+%number of points with $a=1$ is $\fc 56$?
+%need to know other points don't represent 1.
+
+Look in the slice $a=1$, if you count the number of points you get $X^{\fc 56}$. If you look across all classes, which have a transformation to make the leading term 1 (which represent 1)? Presumably the $a=1$ slice are $100\%$ of the cubics representing 1 and contribute the entire $O(X^{\fc 56})$ error term, but we don't know how to prove this.
+
+%bin quartic next time.
+%3/4 cancels, wash out.
+Note there's no 3rd order term, it's $O(X^\ep)$! See Bhargava, Shankar, Tsimerman.
+
+(The Shintani zeta function only have poles at $1, \fc 56$; residues give coefficients. It encodes counts of cubic rings locally, Tamagawa numbers.)
