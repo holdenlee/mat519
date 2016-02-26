@@ -1,6 +1,7 @@
-\blu{2-12: missed class today.}
+\section{Some basic algebraic geometry}
 
-\subsection{Some basic algebraic geometry}
+\textbf{\blu{2-12: missed class today. Notes are sketchy.}}
+
 Let $k$ be a field of characteristic $\ne 2,3$. Let $C/k$ be a ``nice" curve of genus $g$. $\Pic^0(C)$, the Jacobian, is an abelian variety of dimension $g$, defined over $k$. %\Pic n(C) (arrow to itself)
 We have that $C\to \Pic^{\wedge}(C)$ is injective if $g\ge 1$, an isomorphism if $g=1$. 
 For $D\in \Pic^{n}(C)(k)$, indices a map
@@ -202,8 +203,55 @@ Divide, look for cancellation, and profit. (Product formula)
 Question: start with $v\in V_n(K)$ locally soluble with integral invariants $(I,J)\in \cal E$. Does there exist $v'\in V_n(\cO_K)$ that is $G_n(K)$-equivalent to $V$?
 
 \begin{thm}[Local minimization]
-Suppose $V_\ph$ is a nonarchimedean local field with ring of integers $\cO_\ph$. Let $v\in V_n(K_\ph$ be soluble with invariants $(I,J)\in 6S(\cO_K)$. Then $G_n(K_\ph)v\cap V_n(\cO_\ph)\ne \phi$.
-
+Suppose $V_\ph$ is a nonarchimedean local field with ring of integers $\cO_\ph$. Let $v\in V_n(K_\ph)$ be soluble with invariants $(I,J)\in 6S(\cO_K)$. Then $G_n(K_\ph)v\cap V_n(\cO_\ph)\ne \phi$.
 \end{thm}
+\begin{proof}
+We have correspondences between
+\begin{enumerate}
+\item
+soluble cubics,
+\item
+$d\in E(K_\ph)/nE(K_\ph)$,
+\item
+$[n]_d:E\to E$,
+\item
+$E\to \Pj^{n-1}$ via the divisor $(n-1)\iy+(P)$ where $P$ is in the class of $d$.
+\end{enumerate}
+The idea is to find a good representative $P$ for $d$. Write down $E\to \Pj^{n-1}$. Observe they are integral.
 
+If $d=0$, $x^3y-\fc I3 y^3 - \fc{J}{27} y^4\in \Sym^4(2)$.
 
+If $d\ne 0$, let $P=(a,b)$ be an arbitrary representative. If $a,b\in \cO_\ph$, then the explicit embedding is integral (do the change of variables $(a,b)\lra (0,0)$ and write down sections). 
+Otherwise, $P\in nE(K_\ph)$.
+
+For $n=2$, $L=K_\ph[x]/(x^3+Ax+b)=K_\ph[\te]$. We have a map
+\bal
+E(K_\ph)/2E(K_\ph) & \hra (L^{\times}/L^{\times 2})_{\text{Norm}=1}\\
+(a,b)&\mapsto (a-\te)\in L^{\times 2}
+\end{align*}
+since $(a,b)\in 2E(K_\ph)$.
+\end{proof}
+
+\subsection{Patching}
+Suppose $v\in U_n(K)$ is locally soluble with invariants in $\Si$. Then there exist $g_\ph\in \si_n(K_\ph)$ such that $g_\ph v\in V_n(\cO_\ph)$ for all $\ph\nin M_{\iy}$. Consider the adele $(g_\ph)_\ph\in \si_n(\A_f)$.
+\[
+d_{\si_n,K}:=\pa{\prod_{\ph\nin M_{\iy}}G_n(\cO_\ph)}\bs G_n(\A_f)/G_n(K)
+\]
+is always finite (and $=1$ for $K=\Q$), by Borel, Prasad, and Conrad.
+
+Fix lifts of $cl_{G_{n,K}}$ in $G_n(\A_f)$. Then there exist $(g_\ph')\in \prod_{\ph\nin M_{\iy}} G_n(\cO_\ph)$, $\be\in cl_{G_{n,\A_f}}$ one of the chosen lifts, $h\in G_n(K)$, such that $(g_\ph)=(g_\ph')\be h$. Then $hv\in V_n(K)\cap \be^{-1}\pa{\prod_{\ph\nin M_{\iy}V_n(\cO_\ph)}}=V_{n,\be}$ where $V_{n,\be}$ is commensurable with $V_{n,1}=V_(\cO_K)$. The subgroup
+\[
+G_{n,\be} = G_n(K) \cap \be^{-1}\pa{\prod_{\ph\nin M^{\iy}}G_n(\cO_\ph)}\be
+\]
+is commensurable with $G_{n,1}=G_n(\cO_\ph)$ and acts on $V_{n,\be}$. Count $\#G_n(K)\bs V_n^{\text{loc. sol.}}(K)$ by counting $\#G_{n,\be}\bs V_{n,\be}$. 
+
+Some problems:
+\begin{enumerate}
+\item
+One $v$ can correspond to multiple $\be$.
+\item
+One $G_n(K)$-orbit in $V_{n,\be}$ might break up into multiple $G_{n,\be}$-orbits.
+\item 
+Elements of $V_{n,\be}$ might not be locally soluble.
+\end{enumerate}•
+The solution is to count lattice points with a weight function.
