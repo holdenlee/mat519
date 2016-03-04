@@ -1,0 +1,123 @@
+
+\blu{3-4-16}
+
+Our goal is to understand how many $\GL_2(\Z)$ ($\SL_2(\Z)$) classes of integer binary $n$-ic forms are there forgivenvalus of the invariants on average.
+
+For $n=2$, $D$ is the only invariant.
+\begin{itemize}
+\item
+Conjecture $O(D^\ep)$ for $D>0$
+\item
+Theorem $c|D|^{\rc 2}$ for $D<0$.
+\end{itemize}
+For $n=3$, $D$ is the only invariant.
+\begin{itemize}
+\item
+Theorem $\fc{\ze(2)}{72}$ for $D>0$
+\item
+Theorem $\fc{\ze(2)}{24}$ for $D<0$.
+\end{itemize}
+
+\section{Counting binary quartic forms}
+
+There are two invariants, $I$ of degree 2 and $J$ of degree 3. Order all classes of binary quartic forms $f$ by $H(f)=H(I,J):=\max\bc{|I|^3,\fc{J^2}{4}}$. The discriminant is  $\De(f)= \De(I,J) = 4I^3 - J^2$.
+
+How does $\GL_2(\R)$ act on real binary quartic forms?
+Let $V$ be the space of binary quartic forms.
+Real binary quartic forms break up into 4 connected components.
+A natural way to break them up is by number of real roots. For $i=0,1,2$ let $V_{\R}^{(i)}$ be the set of forms in $V_\R$ of nonzero $\De$ having $i$ pairs of nonreal roots. 
+
+Naturally these sets are not connected to each other, because to get from one to the other you have to pass through discriminant 0. $V_{\R}^{(2)}$ are just definite forms (only taking 1 sign). (Otherwise there's a real zero by Intermediate Value Theorem.)
+%intermediate value theorem
+So it breaks up into positive and negative definite forms.
+\[
+V_\R^{(2)} = V_{\R}^{(2+)} \cup V_{\R}^{(2-)}.
+\]
+Thus
+\[
+V_{\R}^{\text{nonzero disc}} = V_{\R}^{(0)}\sqcup V_\R^{(1)} \sqcup V_{\R}^{(2+)} \sqcup V_{\R}^{(2-)}
+\]
+Negative discriminant occurs for $V_{\R}^{(1)}$; positive discriminant breaks up into the other 3 sets.
+%e mod 2e.
+Here are some facts.
+\begin{enumerate}
+\item
+If $\De(I,J)<0$, there exists a unique $\SL_2^{\pm}(\R)$ orbit (in $V_{\R}^{(1)}$) on $V_{\R}$ having invariants $I,J$.
+%3-torsion of elliptic curves, number of roots.
+%Having a unique orbit breaks down when disc positive, 3 orbits.
+\item
+If $\De(I,J)>0$, there exists 3 $\SL_2^{\pm}(\R)$-orbits (in $V_\R^{(0)}, V_{\R}^{(2+)}, V_{\R}^{(2-)}$, respectively) with invariants $I,J$.
+\end{enumerate}
+In $\GL_2(\R)$, $I,J$ are not invariants but are relative invariants. If $f\in V_\R$ and $g\in \GL_2(\R)$, then
+%$A$ and $B$ of elliptic curve.
+\bal
+I(g\cdot f) &= (\det g)^4 I(f)\\
+J(g\cdot f) &= (\det g)^6 J(f)
+\end{align*}
+where the action is $(g\cdot f)(x,y) = f((x,y)\cdot g)$.
+%orbit soluble. 
+
+\fixme{For $V_{\R}^{(0)}$ there is only one soluble orbit. In second case we have 2 soluble orbits. %Soluble
+Binary quartics correspond to genus 1 curves. It has a point over $\R$ iff the binary quartic is in one of the first three sets (not $V_\R^{(2-)}$). The number of orbits such that it is soluble is $E(K)/2E(K)$. $E(\R)/2E(\R)$ has only 1 point when it has only 1 connected component, when $E$ has only 1 real 2-torsion point.
+For $V_\R^{(1)}$, the Jacobian will have just one connected component.
+ In the case of 4 real roots, the Jacobian has 2 connected components, size 2. $V_{\R}^{(2-)}$ is not soluble.}
+
+%3 real roots. 
+%up to $\GL_2(\R)$ equivalent to 1 choice of vector.
+%Given a choice of $I,J$, everything will be $\GL_2(\R)$ invariant to that.
+
+A fundamental set $L^{(i)}$ for $\GL_2(\R)$ on $V_\R^{(i)}$ can be constructed by choosing a point $p_{I,J}^{(i)}\in V_{\R}^{(i)}$ for each $I,J$ such that $H(I,J)=1$ (you can always scale so the height of $I,J$ is 1) and $\De(I,J)(-1)^i>0$ (it has the right sign).
+
+%nice continuous thing.
+%can be a line segment.
+We can choose $L^{(i)}$ to be a finite union of finite line segments in $V_\R^{(i)}$. For example, 
+\[
+L^{(0)} = \set{x^3y - \rc3xy^3 - \fc{J}{27}y^4}{-2<J<2}.
+\]
+We use the key fact that the $L^{(i)}$'s are bounded. 
+
+For binary cubics, if you have 1 real root and 2 complex, a real linear fractional transformation can only flip the two conjugate roots. Thus for binary cubics the stabilizer is either 2 or 6.
+
+Binary quartics is the last interesting case you can't take any 4 to any 4, but you can do double transpositions over $\C$. Over $\R$ you have to analyze which are defined over $\R$. (For 5 or more points, stabilizers are trivial.)
+
+\begin{lem}
+Generic stabilizers in $\GL_2(\R)$ of points in $V_{\R}^{(i)}$ have size 
+\begin{itemize}
+\item
+8 for $i=0$ (any double transposition multipliedby $\pm I$), 
+\item
+4 for $i=1$ (you can't switch the real and complex),
+\item
+8 for $i=2$ for both the $+$ and $-$ case.
+\end{itemize}
+\end{lem}
+The size of the stabilizer is 2 times the number of 2-torsion points.
+
+Therefore a union of fundamental domains for the action of $\GL_2(\Z)$ on $V_{\R}^{(i)}$ is given by 
+\[\cal F\cdot L^{(i)}\] where $\cal F=\GL_2(\Z)\bs \GL_2(\R) = N'A'K\La$ where $N'$ is compact, $A'=\set{\matt{t^{-1}}00{t}}{t\ge0}$, $K=\SO_2$, and $\La = \set{\matt{\la}00{\la}}{\la>0}$, and $L^{(i)}=\GL_2(\R)\bs V_{\R}^{(i)}$. 
+When we multiply, the $\GL_2(\R)$'s ``cancel". This is not quite right because of the stabilizer issue again.
+%covering the stabilizer a number of times.
+The $n_i$ is the number of linear fractional transformations that permute the 4 points.
+%instead of point, get line.
+
+Counting 1 fundamental domain was difficult because of the noncompact part with the cusp going to $\iy$. Instead take a ball of $v$'s. Exchange and use Davenport's lemma.
+
+We can take different $L^{(i)}$'s. What does this mean? One way to make a $L^{(i)}$ is to hit with another group element. $L^{(i)}$ will still be a fundamental domain for the action of $\GL_2(\R)$. More generally, $\cal Fh\cdot L^{(i)}$ is also such a union of fundamental domains.
+
+Let $G_0$ be any compact left $K$-invariant subset of $G(\R)$ that is the closure of an open set.
+For all $h\in G_0$ we will look at $hL^{(i)}$; we get a compact continuum of fundamental domains. The inequalities for the boundaries are complicated; this method sidesteps the inequalities. We divide by how much $h$ we're using at the end.
+
+The number of irreducible $\GL_2(\Z)$-classes of binary quintic forms with $H(f)<X$ is 
+\bal
+N(V_{\Z}^{(i)},X)&=\fc{\int_{h\in G_0} |\set{x\in\cal F h\cdot L^{(i)}\cap  V_\Z^{\text{irr}}}{H(x)<X}|\,dh}{n_i \int_{h\in G_0}dh}\\
+%each individual one is the same.
+&=
+%change the order of integration so we don't have to count lattice points in this crazy region and so we can use Davenport's lemma to count.
+\rc{M}\int_{g\in \cal F} \#\set{x\in gG_0\cdot L^{(i)}\cap V_\Z^{\text{irr}}}{H(x)<X}\,dg\\
+&\quad g=n\matt{t^{-1}}00tk\la, \quad B(n,t,\la,X):=gG_0\cdot L^{(i)}\\
+%instead of letting $h$ vary over $G_0$, replace $h$ by 
+%L^{(i)}$ is a bounded set
+%this is a bounded set we're trying to count, which was cane davenport's lemma for.
+&=\rc M \int_{g\in N'A'K\La} \#(B(n,k,\la,X)\cap V_\Z^{\text{irr}}) t^{-2}\,dk\,dn\,d^{\times} t\,d\la
+%cross over $t^{-2}$ appears.
+\end{align*}
